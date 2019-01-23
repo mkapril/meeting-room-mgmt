@@ -1,0 +1,48 @@
+-- RESERVATION
+DROP TABLE IF EXISTS RESERVATION;
+CREATE TABLE RESERVATION (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  reservation_id int NOT NULL,
+  room_Id int NOT NULL ,
+  reservation_date varchar(8),
+  start_time varchar(4),
+  end_time varchar(4),
+  repeat_count int,
+  turn_count int,
+  name varchar(200),
+  reg_date TIMESTAMP
+);
+
+-- RESERVATION_MASTER 
+DROP TABLE IF EXISTS RESERVATION_MASTER;
+CREATE TABLE RESERVATION_MASTER (
+	reservation_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	room_Id int NOT NULL,
+	reg_date TIMESTAMP default now()
+
+);
+	
+
+-- MEETINGROOM_INFO
+DROP TABLE IF EXISTS MEETINGROOM_INFO;
+CREATE TABLE MEETINGROOM_INFO (
+  roomid int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  roomname varchar(255),
+  capacity int(11) NOT NULL
+);
+
+-- HOURS
+DROP TABLE IF EXISTS WORKING_HOURS;
+CREATE TABLE WORKING_HOURS (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  hour varchar(2) NOT NULL
+);
+
+
+-- MINUTES
+DROP TABLE IF EXISTS WORKING_MINUTES;
+CREATE TABLE WORKING_MINUTES (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  minutes varchar(2) NOT NULL
+);
+
