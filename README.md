@@ -122,13 +122,13 @@ synchronized (this) {
 > /meeting-room-mgmt-backend/src/test/java/com/mkhan/api 하위
 
 * InfoTest.java 
-> 기준 정보 가져오기 
+	> 기준 정보 가져오기 
 - hoursTest()
 - minutesTest()
 - meetingRoomTest()
 	
 * ReservationTest.java
-> 예약 정보 생성  테스트 
+	> 예약 정보 생성  테스트 
  - multiReservation() - 반복 예약 생성 
  - singleReservation() - 단건 예약 생성 
 
