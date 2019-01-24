@@ -6,24 +6,17 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import com.mkhan.api.info.dto.*;
 import com.mkhan.api.reservation.dto.Reservation;
 import com.mkhan.api.reservation.dto.ReservationDTO;
-import com.mkhan.api.reservation.dto.ReservationRepository;
 import com.mkhan.api.reservation.service.ReservationService;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(classes=ReservationService.class,webEnvironment = WebEnvironment.RANDOM_PORT)
 
 @EnableAutoConfiguration
 @ContextConfiguration(classes = ReservationService.class)
@@ -32,7 +25,7 @@ import com.mkhan.api.reservation.service.ReservationService;
 public class ReservationTest {
 	
 	/*
-	 * application을 구동하기 위한 필수 정보 데이터셋이 정상인지 테스트 
+	 * 예약 서비스가 정상인지 테스트  
 	 * 														*/
 	
 	@Autowired
@@ -89,7 +82,7 @@ public class ReservationTest {
 		 
 		 @Test
 		 public void singleReservation() {
-			 // 단건 예약 확
+			 // 단건 예약 확인 
 		 	List<Reservation> singleList = service.createReservation(single);
 			 
 			 assertThat(singleList).hasSize(1)

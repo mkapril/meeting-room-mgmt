@@ -8,9 +8,7 @@ import java.time.temporal.ChronoUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 @Builder
 public class ReservationDTO {
@@ -102,9 +100,6 @@ public class ReservationDTO {
 	}
 
 	public void setRegDate() {
-		//regDate = LocalDateTime.now();
-	//	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		System.out.println("?????"+getDateTime());
 		this.regDate = getDateTime();
 	}
 	
@@ -120,14 +115,6 @@ public class ReservationDTO {
 	}
 
 	public void setNextreservationDate(String firstreservationDate, int turn) {
-		
-//		//요일 가져오기 
-//		DayOfWeek day = LocalDate.parse(firstreservationDate).getDayOfWeek();
-//		this.nextreservationDate =  LocalDate.now().with(TemporalAdjusters.next(day)).format(DateTimeFormatter.BASIC_ISO_DATE);
-//		
-//		// 예약 시작일 
-//		LocalDate thisreservationDate = LocalDate.parse(firstreservationDate);
-//		LocalDate nextreservationDate = thisreservationDate.plus(turn, ChronoUnit.WEEKS);
 		
 
 	}
@@ -153,7 +140,6 @@ public class ReservationDTO {
 		 LocalDateTime now = LocalDateTime.now();
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		 String nowString = now.format(formatter);
-		 System.out.println("NOWW!"+nowString);
 		 return LocalDateTime.parse(nowString,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); 
 
 	  }
@@ -173,6 +159,14 @@ public class ReservationDTO {
 				 .name(name)
 				 .build();
 	 }
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	
 }

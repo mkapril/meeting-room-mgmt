@@ -104,7 +104,6 @@ public class ReservationService {
 	
 	public List<Reservation> createReservation(ReservationDTO rd){
 		List<Reservation> list = new ArrayList<Reservation>();
-		System.out.println("RD!==="+rd.toString());
 		rd.setFirstreservationDate(rd.getreservationDate());
 		int repeatCount = Optional.ofNullable(rd.getRepeatCount()).orElse(1);
 		rd.setRepeatCount(repeatCount);
@@ -132,6 +131,8 @@ public class ReservationService {
 	 public void preCheckParams(ReservationDTO rd) {
 			int len = Optional.ofNullable(rd.getName()).map(String::length).orElseThrow( ()-> new BaseException("300","이름은 필수값입니다. "));
 			if (len == 0 ) throw new BaseException("300","이름은 필수값입니다. ");
+			
+			if (len > 200) throw new BaseException("303","이름은 200자 이하여야 합니다 ");
 			
 			Optional<MeetingRoom> r = meetingRoomRepo.findById(rd.getRoomId());
 			r.orElseThrow(()-> new BaseException("301","유효하지 않은 회의실입니다."));

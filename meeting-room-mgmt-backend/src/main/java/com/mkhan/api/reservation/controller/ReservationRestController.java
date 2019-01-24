@@ -35,13 +35,11 @@ public class ReservationRestController {
 	
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<Reservation> getAllReservations() {
-		// This returns a JSON or XML with the users
 		return reservationService.findAllReservation();
 	}
 	
 	@GetMapping(path="/date/{reservationDate}")
 	public @ResponseBody Iterable<Reservation> getAllReservationByDate(@PathVariable String reservationDate){
-		System.out.println("reservationDate!" + reservationDate);
 		return reservationService.findAllReservationByDate(reservationDate);
 	}
 	

@@ -33,7 +33,6 @@ public class InfoTest {
 	 public void hoursTest() {
 		 
 		List<Hours> hourList = hours.findAll();
-		hourList.forEach(l -> System.out.println(l.getHour()));
 		
 		// 초기 데이터 로드 11개 확인 
 		assertThat(hourList).isNotEmpty()
