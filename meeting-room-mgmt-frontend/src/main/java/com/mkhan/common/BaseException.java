@@ -3,6 +3,10 @@ package com.mkhan.common;
 
 public class BaseException extends RuntimeException {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5669198938110295224L;
 	private final String ERR_CODE;
 	
 	public BaseException(String errCode,String message){

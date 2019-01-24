@@ -4,12 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.mkhan.common.BaseException;
 
 import lombok.Builder;
 import lombok.ToString;
@@ -105,9 +103,6 @@ public class ReservationDTO {
 	}
 
 	public void setRegDate() {
-		//regDate = LocalDateTime.now();
-	//	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		System.out.println("?????"+getDateTime());
 		this.regDate = getDateTime();
 	}
 	
@@ -156,7 +151,6 @@ public class ReservationDTO {
 		 LocalDateTime now = LocalDateTime.now();
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		 String nowString = now.format(formatter);
-		 System.out.println("NOWW!"+nowString);
 		 return LocalDateTime.parse(nowString,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); 
 
 	  }

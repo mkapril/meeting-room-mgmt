@@ -4,13 +4,11 @@ package com.mkhan.frontend.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,20 +27,24 @@ public class ReservationController {
 	@RequestMapping(path="/reservationForm")
 	public String reservationForm(Model model) {
 		
+		String view = "/reservation/ReservationForm";
 		// 기본 data load
+		try {
+			model.addAttribute("hoursList",reservationService.getHoursList());
+			model.addAttribute("minutesList",reservationService.getMinutesList());
+			model.addAttribute("meetingRoomList", reservationService.getMeetingRoomList());
+		} catch (Exception e ) {
+			e.printStackTrace();
+			view = "error/500"; // backend 응답이 없을 경우 
+		}
 		
-		model.addAttribute("hoursList",reservationService.getHoursList());
-		model.addAttribute("minutesList",reservationService.getMinutesList());
-		model.addAttribute("meetingRoomList", reservationService.getMeetingRoomList());
-		
-		return "/reservation/ReservationForm";
+		return view;
 	}
 	
 	
 	@GetMapping("/dashboard")
 	public String dashboard(Model model, String reservationDate) {
 		
-		System.out.println("FORNT!"+reservationDate);
 		String today = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE).toString();
 		
 		if (reservationDate == null) {
@@ -58,22 +60,14 @@ public class ReservationController {
 	
 	@GetMapping("/findReservationByDate")
 	public @ResponseBody List<Reservation> findReservationByDate(@RequestParam String reservationDate) {
-		//model.addAttribute("meetingRoomList",meetingRoomRepository.findAll());
-//		reservationDate="20190122";
-//		model.addAttribute("reservationListByDate", reservationService.findReservationByDate(reservationDate));
 		return reservationService.findReservationByDate(reservationDate);
 	}
 	
 	@RequestMapping(path="/addReservation")
 	public @ResponseBody CustomMessage addReservation(@RequestBody ReservationDTO reservationDTO) {
-		System.out.println("addReservation!");
-		System.out.println(reservationDTO.toString());
 		CustomMessage s = reservationService.addReservation(reservationDTO);
 		
-		System.out.println("message"+s.getMessage());
-		System.out.println("message"+s.getResultCode());
 		return s;
-//		return "Hello";
 	}
 	
 	

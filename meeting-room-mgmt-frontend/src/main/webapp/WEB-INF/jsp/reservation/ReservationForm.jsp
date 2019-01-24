@@ -161,6 +161,25 @@
 				  return false;
 			  }
 			  
+			  if ($("#name").length > 200){
+				  alert("이름은 200자를 초과할 수 없습니다 ");
+				  return false;
+			  }
+			  
+			  if ($("#startTime").val() >= $("#endTime").val()){
+				  
+				  alert("종료 시각은 시작 시간보다 커야 합니다 ");
+				  return false;
+			  }
+			  
+			  if ( !($("#startTimeMinutes").val() == '00' || $("#startTimeMinutes").val() == '30')
+					|| !( $("#endTimeMinutes").val() == '00' ||  $("#endTimeMinutes").val() == '30') 
+			     ) {
+				  
+				  alert("00분, 30분 단위만 예약 가능합니다. ");
+				  return false;
+			  }
+			  
 			  return true;
 		  }
 		  

@@ -106,6 +106,7 @@
 			 $("#td${reservation.roomId}${startHour}").html('${repeatText}'+'${reservation.name}'
 			 +'<br><br>${startHour}:${startMin}<br>${endHour}:${endMin}');
 		 	$("#td${reservation.roomId}${startHour}").addClass("success");
+		 	$("#td${reservation.roomId}${endHour-1}").addClass("success");
 		 </script>
 	 </c:forEach>
 

@@ -59,7 +59,6 @@ public class ReservationService {
 	}
 	
 	public List<Reservation> findReservationByDate(String reservationDate) {
-		System.out.print("FRONT END="+reservationDate);
 		return Arrays.asList(restTemplate.getForObject(
 				String.format("%s/api/reservation/date/%s", serviceUrl,reservationDate),
 				Reservation[].class));

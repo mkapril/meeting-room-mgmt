@@ -14,5 +14,13 @@ public class Hours {
 	public void setHour(String hour) {
 		this.hour = hour;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 }

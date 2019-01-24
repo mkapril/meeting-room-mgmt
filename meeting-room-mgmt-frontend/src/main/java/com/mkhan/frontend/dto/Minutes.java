@@ -14,5 +14,13 @@ public class Minutes {
 	public void setMinutes(String minutes) {
 		this.minutes = minutes;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 }

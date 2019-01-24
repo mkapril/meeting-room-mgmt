@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mkhan.api.info.dto.*;
 
-import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping(path="api/info")
