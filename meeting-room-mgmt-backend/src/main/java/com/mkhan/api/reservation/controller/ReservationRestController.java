@@ -43,6 +43,11 @@ public class ReservationRestController {
 		return reservationService.findAllReservationByDate(reservationDate);
 	}
 	
+	@GetMapping(path="/roomId/{roomId}")
+	public @ResponseBody Iterable<Reservation> getAllReservationByRoomId(@PathVariable Integer roomId){
+		return reservationService.findAllReservationByRoomId(roomId);
+	}
+	
 	@RequestMapping(path="/all", method=RequestMethod.DELETE)
 	public void deleteAllReservation() {
 		reservationService.deleteAllReservation();

@@ -98,6 +98,11 @@ public class ReservationService {
 		return reservationRepository.findAllByReservationDate(reservationDate);
 	}
 	
+	public Iterable<Reservation> findAllReservationByRoomId (Integer roomId){
+		
+		return reservationRepository.findAllByRoomId(roomId);
+	}
+	
 	public void deleteAllReservation() {
 		 reservationRepository.deleteAll();
 	}

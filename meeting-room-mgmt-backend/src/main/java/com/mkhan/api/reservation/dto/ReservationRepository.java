@@ -19,4 +19,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	int countOverlap(@Param("reservationDate") String reservationDate, @Param("roomId")Integer roomId, @Param("startTime") String startTime, @Param("endTime") String endTime);
 	
 	List<Reservation> findAllByReservationDate (String reservationDate);
+	
+	List<Reservation> findAllByRoomId (Integer roomId);
 }
