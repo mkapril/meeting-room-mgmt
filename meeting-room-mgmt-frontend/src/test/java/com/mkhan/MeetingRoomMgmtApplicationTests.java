@@ -47,21 +47,21 @@ public class MeetingRoomMgmtApplicationTests {
 		
 		reservationDTOSingle = ReservationDTO.builder()
 				  .name("TEST USER")
-				  .reservationDate("20190125")
+				  .reservationDate("20190124")
 				  .roomId(4)
 				  .startTime("1000")
 				  .endTime("1200")
-				  .firstreservationDate("20190125")
+				  .firstreservationDate("20190124")
 				  .repeatCount(1)
 				  .build();
 		
 		reservationDTO = ReservationDTO.builder()
 						  .name("MULTI TEST USER")
-						  .reservationDate("20190125")
+						  .reservationDate("20190124")
 						  .roomId(3)
 						  .startTime("1000")
 						  .endTime("1200")
-						  .firstreservationDate("20190125")
+						  .firstreservationDate("20190124")
 						  .repeatCount(4)
 						  .build();
 		
@@ -71,18 +71,18 @@ public class MeetingRoomMgmtApplicationTests {
 				  .roomId(3)
 				  .startTime("1010")
 				  .endTime("1230")
-				  .firstreservationDate("20190125")
+				  .firstreservationDate("20190124")
 				  .repeatCount(4)
 				  .build();
 		
 		/* 필수값 (이름) 누락 케이스 */
 		reservationDTO3 = ReservationDTO.builder()
 				  .name("")
-				  .reservationDate("20190125")
+				  .reservationDate("20190124")
 				  .roomId(3)
 				  .startTime("1010")
 				  .endTime("1230")
-				  .firstreservationDate("20190125")
+				  .firstreservationDate("20190124")
 				  .repeatCount(4)
 				  .build();
 		
@@ -93,7 +93,7 @@ public class MeetingRoomMgmtApplicationTests {
 				  .roomId(20)
 				  .startTime("1000")
 				  .endTime("1230")
-				  .firstreservationDate("20190125")
+				  .firstreservationDate("20190124")
 				  .repeatCount(4)
 				  .build();
 					  
@@ -145,7 +145,7 @@ public class MeetingRoomMgmtApplicationTests {
 		logger.info("getReservation Test====");
 		
         ResponseEntity<Reservation[]> response = restTemplate.getForEntity(
-				String.format("%s/api/reservation/date/%s", serviceUrl,"20190125"),
+				String.format("%s/api/reservation/date/%s", serviceUrl,"20190124"),
 				Reservation[].class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
@@ -215,11 +215,26 @@ public class MeetingRoomMgmtApplicationTests {
 	
 	@Test
 	public void testI() {
+		logger.info("select all Reservation Data ====");
+		
+		ResponseEntity<Reservation[]> response =  restTemplate.getForEntity(String.format("%s/api/reservation/all", serviceUrl), Reservation[].class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+		
+		// test 후 생성된 예약이 DB에 존재하는 지 확인 
+		assertThat(response.getBody().length).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testJ() {
 		logger.info("delete All test data====");
 		
-		ResponseEntity<Void> response = restTemplate.getForEntity(String.format("%s/api/reservation/delete", serviceUrl),
-				Void.class);
+		 restTemplate.delete(String.format("%s/api/reservation/all", serviceUrl));
+		 
+		 ResponseEntity<Reservation[]> response =  restTemplate.getForEntity(String.format("%s/api/reservation/all", serviceUrl), Reservation[].class);
 		 assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+		 
+		 // 모두 지워졌는 지 확인 
+		 assertThat(response.getBody().length).isEqualTo(0);
 		
 	}
 	

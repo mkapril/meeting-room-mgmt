@@ -43,7 +43,7 @@ public class ReservationRestController {
 		return reservationService.findAllReservationByDate(reservationDate);
 	}
 	
-	@GetMapping(path="/delete")
+	@RequestMapping(path="/all", method=RequestMethod.DELETE)
 	public void deleteAllReservation() {
 		reservationService.deleteAllReservation();
 	}
