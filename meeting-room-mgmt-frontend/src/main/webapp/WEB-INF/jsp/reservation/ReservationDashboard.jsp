@@ -99,9 +99,14 @@
 		<c:set var="endHour" value="${fn:substring(reservation.endTime,0,2)}" />
 		<c:set var="endMin"  value="${fn:substring(reservation.endTime,2,4)}" />
 		
-		<c:if test="${ reservation.repeatCount > 1}">
-			<c:set var="repeatText" value="(반복 ${reservation.turnCount}/${reservation.repeatCount}) <br>" />
-		</c:if>
+		<c:choose>
+			<c:when test="${ reservation.repeatCount > 1}">
+				<c:set var="repeatText" value="(반복 ${reservation.turnCount}/${reservation.repeatCount}) <br>" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="repeatText" value="" />
+			</c:otherwise>
+		</c:choose>
 		<script>
 			 $("#td${reservation.roomId}${startHour}").html('${repeatText}'+'${reservation.name}'
 			 +'<br><br>${startHour}:${startMin}<br>${endHour}:${endMin}');
